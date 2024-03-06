@@ -22,6 +22,10 @@ namespace AnomalousZonePlugin.Classes
         {
             effects.Remove(effect);
         }
+        public void ClearEffects()
+        {
+            effects.Clear();
+        }
         public static Effect[] GetEffects(PlayerEffects player)
         {
             return player.effects.ToArray();
