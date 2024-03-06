@@ -34,5 +34,9 @@ namespace AnomalousZonePlugin.Configs
         public float StrangleLimit { get; set; } = 5f;
         [Description("Cooldown for SCP-3114 Strangle ability")]
         public float StrangleCooldown { get; set; } = 3.5f;
+        [Description("Minimum time for Funny Pills disguise(secs)")]
+        public float PillsDisguiseMinTime { get; set; } = 20f;
+        [Description("Maximum time for Funny Pills disguise(mins)")]
+        public float PillsDisguiseMaxTime { get; set; } = 5f;
     }
 }
