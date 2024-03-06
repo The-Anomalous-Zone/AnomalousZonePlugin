@@ -19,3 +19,9 @@ namespace AnomalousZonePlugin.Classes
         this.CurrentIntensity = CurrentIntensity;
         this.Duration = Duration;
       }
+     public StatusEffectBase GetEffect()
+     {
+         return Effect;
+     }
+    }
+}
