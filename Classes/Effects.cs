@@ -1,0 +1,21 @@
+﻿using Exiled.API.Enums;
+using System.Collections.Generic;
+using Exiled.API.Features;
+using CustomPlayerEffects;
+
+namespace AnomalousZonePlugin.Classes
+{
+    public class Effects
+    {
+      private StatusEffectBase Effect;
+      private byte Intensity;
+      private byte CurrentIntensity;
+      private float Duration;
+
+      public Effects(StatusEffectBase Effect, byte Intensity, byte CurrentIntensity, float Duration)
+      {
+        this.Effect = Effect;
+        this.Intensity = Intensity;
+        this.CurrentIntensity = CurrentIntensity;
+        this.Duration = Duration;
+      }
