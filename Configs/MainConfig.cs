@@ -30,5 +30,9 @@ namespace AnomalousZonePlugin.Configs
         public IdentityThief Thief { get; set; } = new IdentityThief();
         [Description("Identity Thief starter role")]
         public RoleTypeId appearance { get; set; } = RoleTypeId.ClassD;
+        [Description("Time limit for SCP-3114 Strangle ability")]
+        public float StrangleLimit { get; set; } = 5f;
+        [Description("Cooldown for SCP-3114 Strangle ability")]
+        public float StrangleCooldown { get; set; } = 3.5f;
     }
 }
