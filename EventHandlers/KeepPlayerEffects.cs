@@ -37,7 +37,7 @@ namespace AnomalousZonePlugin.EventHandlers
         }
         public void OnChangingRole(ChangingRoleEventArgs ev)
         {
-            if (ev.Reason == SpawnReason.Escaped)
+            if (ev.Reason == SpawnReason.Escaped || ev.Reason == SpawnReason.ForceClass)
             {
                 Effect[] effects = PlayerEffects.GetEffects(ev.Player);
                 foreach (Effect effect : effects)
