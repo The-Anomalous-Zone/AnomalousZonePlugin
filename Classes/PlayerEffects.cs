@@ -7,20 +7,29 @@ namespace AnomalousZonePlugin.Classes
 {
     public class PlayerEffects
     {
-        private List<StatusEffectBase> effects;
         private Player player;
+        private List<Effects> effects;
+        
         public PlayerEffects(Player player) 
         {
             this.player = player;
-            effects = new List<StatusEffectBase>();
+            this.effects = new List<Effects>();
         }
-        public void AddEffect(StatusEffectBase effect)           
+        public void AddEffect(StatusEffectBase effect, byte intensity, byte currentIntensity, float duration)           
         {
-            effects.Add(effect);
+            effects.Add(new Effects(effect, intensity, currentIntensity, duration));
         }
         public void RemoveEffect(StatusEffectBase effect)
         {
-            effects.Remove(effect);
+            int x = 0;
+            while (x < effects.Count)
+            {
+                if (effects[x].GetEffect() == effect)
+                {
+                    effects.RemoveAt(x);
+                }
+                x++;
+            }       
         }
         public void ClearEffects()
         {
