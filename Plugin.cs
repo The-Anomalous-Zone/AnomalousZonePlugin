@@ -49,6 +49,7 @@ namespace AnomalousZonePlugin
         private EndRoundEvents EndRoundEvents;
         private Candy Candy;
         private Harmony Harmony;
+        private SkeletonNerf Nerf;
         private CoroutineHandle coroutineHandle;
         public Dictionary<ReferenceHub, OpusComponent> Encoders = new Dictionary<ReferenceHub, OpusComponent>();
 
@@ -67,7 +68,7 @@ namespace AnomalousZonePlugin
             replace = new ReplacePlayer(this);
             EndRoundEvents = new EndRoundEvents(this);
             Candy = new Candy(this);
-            Skeleton = new SkeletonNerf(this);
+            Nerf = new SkeletonNerf(this);
             keepEffects = new KeepPlayerEffects(this);
 
             // Register Tesla Blackouts events
@@ -120,11 +121,14 @@ namespace AnomalousZonePlugin
             // Register Exploding coin flips events
             Player.FlippingCoin += coin.OnFlippingCoin;
 
-            // Register SCP disconnection events
+            // Register player disconnection events
             Player.Left += replace.OnLeft;
 
-            // Register Pink candy events
+            // Register candy events
             SCP330.InteractingScp330 += Candy.OnInteractingScp330;
+
+            // Register Skeleton events
+            Player.Hurting += Nerf.OnHurting;
 
             base.OnEnabled();
         }
@@ -144,6 +148,7 @@ namespace AnomalousZonePlugin
             replace = null;
             EndRoundEvents =  null;
             Candy = null;
+            Nerf = null;
 
             // Unregister Tesla Blackouts events
             SCP3114.Disguising -= blackouts.OnDisguising;
@@ -191,11 +196,14 @@ namespace AnomalousZonePlugin
             // Unregister Exploding coin flips events
             Player.FlippingCoin -= coin.OnFlippingCoin;
 
-            // Unregister SCP disconnection events
+            // Unregister player disconnection events
             Player.Left -= replace.OnLeft;
 
-            // Unregister Pink candy events
+            // Unregister candy events
             SCP330.InteractingScp330 -= Candy.OnInteractingScp330;
+
+            // Unregister Skeleton events
+            Player.Hurting -= Nerf.OnHurting;
 
             base.OnDisabled();
         }
