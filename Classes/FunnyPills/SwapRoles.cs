@@ -81,6 +81,8 @@ namespace AnomalousZonePlugin.Classes.FunnyPills
                     }
 
             }
+        player.Role.Set(newRole, RoleSpawnFlags.None);
+        player.ShowHint($"<b><color=#0d98ba>You've betrayed your team and became a </color><color={newRole.GetColor().ToHex()>{newRole.GetFullName()}</color><color=#0d98ba>!</color></b>");        
         }
     }
 }
