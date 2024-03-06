@@ -1,10 +1,7 @@
 using Exiled.API.Interfaces;
-using System;
-using System.Collections.Generic;
+using PlayerRoles;
+using AnomalousZonePlugin.Classes.Roles;
 using System.ComponentModel;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace AnomalousZonePlugin.Configs
 {
@@ -26,5 +23,12 @@ namespace AnomalousZonePlugin.Configs
         public int CoinExplosionChance { get; set; } = 5;
         [Description("Allow SCP-079 to use tesla gates during blackouts")]
         public bool allow079 { get; set; } = false;
+        public Kid Kid { get; set; } = new Kid();
+        public Captain Captain { get; set; } = new Captain();
+        public Supervisor Supervisor { get; set; } = new Supervisor();
+        public Dealer Dealer { get; set; } = new Dealer();
+        public IdentityThief Thief { get; set; } = new IdentityThief();
+        [Description("Identity Thief starter role")]
+        public RoleTypeId appearance { get; set; } = RoleTypeId.ClassD;
     }
 }

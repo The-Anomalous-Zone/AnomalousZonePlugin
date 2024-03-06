@@ -2,7 +2,7 @@ using AnomalousZonePlugin.Configs;
 using AnomalousZonePlugin.Configs.SCP294;
 using AnomalousZonePlugin.EventHandlers;
 using AnomalousZonePlugin.EventHandlers.SCP294Handlers;
-using AnomalousZonePlugin.Classes;
+using AnomalousZonePlugin.Classes.Roles;
 using AnomalousZonePlugin.Classes.SCP294;
 using System;
 using Exiled.API.Features;
@@ -16,6 +16,7 @@ using MEC;
 using System.Collections.Generic;
 using MapEditorReborn.API.Features.Objects;
 using Exiled.CustomRoles.API.Features;
+using Exiled.CustomRoles.API;
 
 namespace AnomalousZonePlugin
 {
@@ -66,6 +67,8 @@ namespace AnomalousZonePlugin
             replace = new ReplacePlayer(this);
             EndRoundEvents = new EndRoundEvents(this);
             Candy = new Candy(this);
+            Skeleton = new SkeletonNerf(this);
+            keepEffects = new KeepPlayerEffects(this);
 
             // Register Tesla Blackouts events
             SCP3114.Disguising += blackouts.OnDisguising;
@@ -76,13 +79,12 @@ namespace AnomalousZonePlugin
             Player.TriggeringTesla += blackouts.OnTriggeringTesla;
 
             // Register SubClasses roles
-            MainConfig.kid.Register();
-            MainConfig.supervisor.Register();
-            MainConfig.captain.Register();
-            MainConfig.dealer.Register();
-            MainConfig.thief.Register();
+            Instance.Config.Kid.Register();
+            Instance.Config.Supervisor.Register();
+            Instance.Config.Captain.Register();
+            Instance.Config.Dealer.Register();
+            Instance.Config.Thief.Register();
             // SubClasses events
-            Server.RoundStarted += subclasses.OnRoundStarted;
             Player.TriggeringTesla += subclasses.OnTriggeringTesla;
 
             // Register SCP294 events

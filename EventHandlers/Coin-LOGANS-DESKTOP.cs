@@ -1,4 +1,4 @@
-﻿using Exiled.API.Features.Items;
+using Exiled.API.Features.Items;
 using Exiled.Events.EventArgs.Player;
 using MEC;
 using System;

@@ -1,4 +1,4 @@
-﻿using Exiled.Events.EventArgs.Player;
+using Exiled.Events.EventArgs.Player;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -36,8 +36,8 @@ namespace AnomalousZonePlugin.EventHandlers
 
         public void OnLeft(LeftEventArgs ev)
         {
-            Player[] Spectators = Player.List.Where(p => p.Role.Type == RoleTypeId.Spectator).ToList();
-            Player NewPlayer = Spectators[UnityEngine.Random.Range(0, Spectators.Count)];
+            var Spectators = Player.List.Where(p => p.Role.Type == RoleTypeId.Spectator).ToList();
+            var NewPlayer = Spectators[UnityEngine.Random.Range(0, Spectators.Count)];
             if (Spectators.Count() > 0)
             {
                 NewPlayer.Role.Set(ev.Player.Role.Type, RoleSpawnFlags.None);
@@ -46,7 +46,7 @@ namespace AnomalousZonePlugin.EventHandlers
                 NewPlayer.Broadcast(5, $"<b>You've replaced {ev.Player.Nickname} as a <color={ev.Player.Role.Type.GetColor().ToHex()}>{ev.Player.Role.Type.GetFullName()}</color></b>");
                 if (ev.Player.Role.Team == Team.SCPs)
                 {
-                    foreach (Player player in Player.List)
+                    foreach (var Player in Player.List)
                     {
                         Player.Broadcast(5, $"<b><color={ev.Player.Role.Type.GetColor().ToHex()}>{ev.Player.Role.Type.GetFullName()}</color><color=#0d98ba> has been replaced</color></b>");
                     }

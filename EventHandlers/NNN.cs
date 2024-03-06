@@ -3,6 +3,10 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Exiled.API.Features;
+using Exiled.API.Enums;
+using PlayerRoles;
+using Exiled.Events.EventArgs.Player;
 
 namespace AnomalousZonePlugin.EventHandlers
 {

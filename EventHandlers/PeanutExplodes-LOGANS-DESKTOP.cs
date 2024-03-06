@@ -1,4 +1,5 @@
-﻿using Exiled.API.Features.Items;
+using AnomalousZonePlugin.Classes.FunnyPills;
+using Exiled.API.Features.Items;
 using Exiled.Events.EventArgs.Player;
 using PlayerRoles;
 using System;
@@ -6,7 +7,6 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using AnomalousZonePlugin.Classes.FunnyPills;
 
 namespace AnomalousZonePlugin.EventHandlers
 {
@@ -19,7 +19,7 @@ namespace AnomalousZonePlugin.EventHandlers
         {
             if (ev.Player.Role.Type == RoleTypeId.Scp173 && Plugin.Instance.Config.ExplodeOnDeath)
             {
-                Bang.bang(ev.player, ItemType.GrenadeHE, 0);
+                Bang.bang(ev.Player, ItemType.GrenadeHE, 0);
             }
         }
     }

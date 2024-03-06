@@ -1,12 +1,12 @@
-using Exiled.API.Features;
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
 
 namespace AnomalousZonePlugin.EventHandlers
 {
-  internal sealed class SkeletonNerf
-  {
-    private Plugin plugin;
-    public SkeletonNerf (Plugin plugin) => this.plugin = plugin;
+    internal class SkeletonNerf
     {
     }
-  }
 }
