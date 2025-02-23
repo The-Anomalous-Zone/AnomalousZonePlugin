@@ -17,7 +17,7 @@ namespace AnomalousZonePlugin.EventHandlers
         {
             // It took so long to prevent these 2 lines of code from crashing the server
             // Why
-            // I have no clue
+            // ¯\_(ツ)_/¯
             if (ev.DamageHandler.Type == DamageType.MicroHid && ev.Player.Role.Team != Team.SCPs)
             {
                 ev.Player.Vaporize();
