@@ -1,0 +1,225 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{3573E0FC-9E42-462F-A10A-3EFD0FBDFCBC}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>AnomalousZonePlugin</RootNamespace>
+    <AssemblyName>AnomalousZonePlugin</AssemblyName>
+    <TargetFrameworkVersion>v4.8</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <Deterministic>true</Deterministic>
+    <LangVersion>9.0</LangVersion>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|x64'">
+    <DebugSymbols>true</DebugSymbols>
+    <OutputPath>bin\x64\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <DebugType>full</DebugType>
+    <PlatformTarget>x64</PlatformTarget>
+    <LangVersion>9.0</LangVersion>
+    <ErrorReport>prompt</ErrorReport>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|x64'">
+    <OutputPath>bin\x64\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <Optimize>true</Optimize>
+    <DebugType>pdbonly</DebugType>
+    <PlatformTarget>x64</PlatformTarget>
+    <LangVersion>9.0</LangVersion>
+    <ErrorReport>prompt</ErrorReport>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="0Harmony, Version=2.3.3.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>packages\Lib.Harmony.2.3.3\lib\net48\0Harmony.dll</HintPath>
+    </Reference>
+    <Reference Include="Assembly-CSharp">
+      <HintPath>packages\EXILED.8.9.5\lib\net48\Assembly-CSharp-Publicized.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Assembly-CSharp-firstpass">
+      <HintPath>..\..\..\..\..\..\..\Program Files (x86)\Steam\steamapps\common\SCP Secret Laboratory Dedicated Server\SCPSL_Data\Managed\Assembly-CSharp-firstpass.dll</HintPath>
+    </Reference>
+    <Reference Include="CommandSystem.Core, Version=0.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>packages\EXILED.8.9.5\lib\net48\CommandSystem.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="CustomItems">
+      <HintPath>..\..\..\Downloads\e\CustomItems.dll</HintPath>
+    </Reference>
+    <Reference Include="CustomRoles">
+      <HintPath>..\..\..\Downloads\e\CustomRoles.dll</HintPath>
+    </Reference>
+    <Reference Include="Exiled.API, Version=8.9.5.0, Culture=neutral, processorArchitecture=AMD64">
+      <HintPath>packages\EXILED.8.9.5\lib\net48\Exiled.API.dll</HintPath>
+    </Reference>
+    <Reference Include="Exiled.CreditTags, Version=8.9.5.0, Culture=neutral, processorArchitecture=AMD64">
+      <HintPath>packages\EXILED.8.9.5\lib\net48\Exiled.CreditTags.dll</HintPath>
+    </Reference>
+    <Reference Include="Exiled.CustomItems, Version=8.9.5.0, Culture=neutral, processorArchitecture=AMD64">
+      <HintPath>packages\EXILED.8.9.5\lib\net48\Exiled.CustomItems.dll</HintPath>
+    </Reference>
+    <Reference Include="Exiled.CustomRoles, Version=8.9.5.0, Culture=neutral, processorArchitecture=AMD64">
+      <HintPath>packages\EXILED.8.9.5\lib\net48\Exiled.CustomRoles.dll</HintPath>
+    </Reference>
+    <Reference Include="Exiled.Events, Version=8.9.5.0, Culture=neutral, processorArchitecture=AMD64">
+      <HintPath>packages\EXILED.8.9.5\lib\net48\Exiled.Events.dll</HintPath>
+    </Reference>
+    <Reference Include="Exiled.Loader, Version=8.9.5.0, Culture=neutral, processorArchitecture=AMD64">
+      <HintPath>packages\EXILED.8.9.5\lib\net48\Exiled.Loader.dll</HintPath>
+    </Reference>
+    <Reference Include="Exiled.Permissions, Version=8.9.5.0, Culture=neutral, processorArchitecture=AMD64">
+      <HintPath>packages\EXILED.8.9.5\lib\net48\Exiled.Permissions.dll</HintPath>
+    </Reference>
+    <Reference Include="LiteDB, Version=5.0.20.0, Culture=neutral, PublicKeyToken=4ee40123013c9f27, processorArchitecture=MSIL">
+      <HintPath>packages\LiteDB.5.0.20\lib\net45\LiteDB.dll</HintPath>
+    </Reference>
+    <Reference Include="MapEditorReborn">
+      <HintPath>..\..\..\Downloads\MapEditorReborn.dll</HintPath>
+    </Reference>
+    <Reference Include="Mirror">
+      <HintPath>..\..\..\..\..\..\..\Program Files (x86)\Steam\steamapps\common\SCP Secret Laboratory Dedicated Server\SCPSL_Data\Managed\Mirror.dll</HintPath>
+    </Reference>
+    <Reference Include="Newtonsoft.Json, Version=13.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>packages\Newtonsoft.Json.13.0.3\lib\net45\Newtonsoft.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="NorthwoodLib, Version=1.3.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>packages\EXILED.8.9.5\lib\net48\NorthwoodLib.dll</HintPath>
+    </Reference>
+    <Reference Include="PluginAPI, Version=13.1.2.0, Culture=neutral, processorArchitecture=AMD64">
+      <HintPath>packages\EXILED.8.9.5\lib\net48\PluginAPI.dll</HintPath>
+    </Reference>
+    <Reference Include="Pooling">
+      <HintPath>..\..\..\..\..\..\..\Program Files (x86)\Steam\steamapps\common\SCP Secret Laboratory Dedicated Server\SCPSL_Data\Managed\Pooling.dll</HintPath>
+    </Reference>
+    <Reference Include="RueI, Version=2.0.5.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>packages\RueI.2.0.5\lib\net48\RueI.dll</HintPath>
+    </Reference>
+    <Reference Include="SCPSLAudioApi">
+      <HintPath>..\..\..\Downloads\SCPSLAudioApi.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Xml" />
+    <Reference Include="UnityEngine">
+      <HintPath>..\..\..\..\..\..\..\Program Files (x86)\Steam\steamapps\common\SCP Secret Laboratory Dedicated Server\SCPSL_Data\Managed\UnityEngine.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.CoreModule">
+      <HintPath>..\..\..\..\..\..\..\Program Files (x86)\Steam\steamapps\common\SCP Secret Laboratory Dedicated Server\SCPSL_Data\Managed\UnityEngine.CoreModule.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.PhysicsModule">
+      <HintPath>..\..\..\..\..\..\..\Program Files (x86)\Steam\steamapps\common\SCP Secret Laboratory Dedicated Server\SCPSL_Data\Managed\UnityEngine.PhysicsModule.dll</HintPath>
+    </Reference>
+    <Reference Include="YamlDotNet, Version=11.0.0.0, Culture=neutral, PublicKeyToken=ec19458f3c15af5e, processorArchitecture=MSIL">
+      <HintPath>packages\EXILED.8.9.5\lib\net48\YamlDotNet.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Classes\Effects.cs" />
+    <Compile Include="Classes\FunnyPills\Bang.cs" />
+    <Compile Include="Classes\FunnyPills\Cuff.cs" />
+    <Compile Include="Classes\FunnyPills\DeadChat.cs" />
+    <Compile Include="Classes\FunnyPills\Disguise.cs" />
+    <Compile Include="Classes\FunnyPills\FakeDeath.cs" />
+    <Compile Include="Classes\FunnyPills\HearSCPs.cs" />
+    <Compile Include="Classes\FunnyPills\InvertedControls.cs" />
+    <Compile Include="Classes\FunnyPills\IPLeak.cs" />
+    <Compile Include="Classes\FunnyPills\MaxHP.cs" />
+    <Compile Include="Classes\FunnyPills\Prison.cs" />
+    <Compile Include="Classes\FunnyPills\Randomizer.cs" />
+    <Compile Include="Classes\FunnyPills\Rocket.cs" />
+    <Compile Include="Classes\FunnyPills\Size.cs" />
+    <Compile Include="Classes\FunnyPills\Speed.cs" />
+    <Compile Include="Classes\FunnyPills\Sping.cs" />
+    <Compile Include="Classes\FunnyPills\SummonPlayer.cs" />
+    <Compile Include="Classes\FunnyPills\SwapRoles.cs" />
+    <Compile Include="Classes\FunnyPills\Teleport.cs" />
+    <Compile Include="Classes\FunnyPills\VoiceChat.cs" />
+    <Compile Include="Classes\FunnyPills\Vomit.cs" />
+    <Compile Include="Classes\Items\AdminGun.cs" />
+    <Compile Include="Classes\MoreEscapes\PositionChecker.cs" />
+    <Compile Include="Classes\PlayerEffects.cs" />
+    <Compile Include="Classes\PlayerInventory.cs" />
+    <Compile Include="Classes\RandomElement.cs" />
+    <Compile Include="Classes\RandomPlayer.cs" />
+    <Compile Include="EventHandlers\ReallyStupidStuff.cs" />
+    <Compile Include="EventHandlers\redirect.cs" />
+    <Compile Include="Classes\RemoteKeycard\Permissions.cs" />
+    <Compile Include="Classes\Roles\Captain.cs" />
+    <Compile Include="Classes\Roles\Dealer.cs" />
+    <Compile Include="Classes\Roles\IdentityThief.cs" />
+    <Compile Include="Classes\Roles\Kid.cs" />
+    <Compile Include="Classes\Roles\Supervisor.cs" />
+    <Compile Include="Classes\SCP294\Commands\SCP294AdminCommand.cs" />
+    <Compile Include="Classes\SCP294\Commands\SCP294Command.cs" />
+    <Compile Include="Classes\SCP294\DrinkInfo.cs" />
+    <Compile Include="Classes\SCP294\DrinkManager.cs" />
+    <Compile Include="Classes\SCP294\DrinkSound.cs" />
+    <Compile Include="Classes\SCP294\OnEffectApplied.cs" />
+    <Compile Include="Classes\SCP294\OpusComponent.cs" />
+    <Compile Include="Classes\SCP294\SCP294Object.cs" />
+    <Compile Include="Classes\Sound.cs" />
+    <Compile Include="Classes\StupidCommand.cs" />
+    <Compile Include="Configs\MainConfig.cs" />
+    <Compile Include="Configs\SCP294\CustomDrink.cs" />
+    <Compile Include="Configs\SCP294\DrinkCallback.cs" />
+    <Compile Include="Configs\SCP294\DrinkEffect.cs" />
+    <Compile Include="Configs\SCP294\DrinkList.cs" />
+    <Compile Include="Configs\SCP294\SpawningConfig.cs" />
+    <Compile Include="Configs\SCP294\SpawnTransform.cs" />
+    <Compile Include="EventHandlers\Candy.cs" />
+    <Compile Include="EventHandlers\Coin.cs" />
+    <Compile Include="EventHandlers\FunnyPills.cs" />
+    <Compile Include="EventHandlers\ImprovedCassie.cs" />
+    <Compile Include="EventHandlers\KeepPlayerEffects.cs" />
+    <Compile Include="EventHandlers\MoreEscapes.cs" />
+    <Compile Include="EventHandlers\NNN.cs" />
+    <Compile Include="EventHandlers\PeanutExplodes.cs" />
+    <Compile Include="EventHandlers\EndRoundEvents.cs" />
+    <Compile Include="EventHandlers\Radiation.cs" />
+    <Compile Include="EventHandlers\RemoteKeycard.cs" />
+    <Compile Include="EventHandlers\SCP294Handlers\PlayerHandler.cs" />
+    <Compile Include="Classes\SCP294\RoomHandler.cs" />
+    <Compile Include="EventHandlers\SCP294Handlers\ServerHandler.cs" />
+    <Compile Include="Classes\SCP294\SoundHandler.cs" />
+    <Compile Include="EventHandlers\ReplacePlayer.cs" />
+    <Compile Include="EventHandlers\SkeletonNerf.cs" />
+    <Compile Include="EventHandlers\StupidStuff.cs" />
+    <Compile Include="EventHandlers\Subclasses.cs" />
+    <Compile Include="EventHandlers\TeslaBlackouts.cs" />
+    <Compile Include="EventHandlers\TotallySecretUpdate.cs" />
+    <Compile Include="EventHandlers\Vaporize.cs" />
+    <Compile Include="Plugin.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="app.config" />
+    <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup />
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+</Project>
