@@ -16,13 +16,12 @@ namespace AnomalousZonePlugin.Classes.FunnyPills
         public static void spin(Player player)
         {
             // Does this code work?
-            // No clue haven't tested
+            // ¯\_(ツ)_/¯ haven't tested
             float speed = Plugin.Instance.Config.spinSpeed;
             Quaternion target = player.Transform.rotation;
 
             target *= Quaternion.Euler(0, speed * Time.deltaTime, 0);
-            player.Transform.rotation = Quaternion.RotateTowards(player.Transform.rotation, target, speed * Time.deltaTime); 
-        
+            player.Transform.rotation = Quaternion.RotateTowards(player.Transform.rotation, target, speed * Time.deltaTime);        
         }
     }
 }
