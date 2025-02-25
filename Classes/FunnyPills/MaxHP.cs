@@ -26,6 +26,12 @@ namespace AnomalousZonePlugin.Classes.FunnyPills
             // It should raise the average number of required pills to 7.32 billion
             // The chance now is 9.09% with dying factored in
             // This is actually wrong since health is a float not int
+            // float has a max value of 340,282,300,000,000,000,000,000,000,000,000,000,000
+            // and overflow doesn't go negative it goes to infinity, so the player would have to
+            // take at least 17,014,115,000,000,000,000,000,000,000,000,000,000,000 painkillers
+            // It would require on average 36.7 decillion painkillers
+            // My calculator refuses to give an approximate decimal but the chance of doing it is
+            // 1/(10^(5.5x10^39)) which is basically zero
             player.MaxHealth += 20;
             player.Heal(player.MaxHealth);
             player.ShowHint($"<color=#0d98ba>Your maximum HP has increased to {player.MaxHealth}!</color>");
