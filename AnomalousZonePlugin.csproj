@@ -215,7 +215,6 @@
     <Compile Include="EventHandlers\ReplacePlayer.cs" />
     <Compile Include="EventHandlers\SCPSuicide.cs" />
     <Compile Include="EventHandlers\SkeletonNerf.cs" />
-    <Compile Include="EventHandlers\StupidStuff.cs" />
     <Compile Include="EventHandlers\Subclasses.cs" />
     <Compile Include="EventHandlers\TeslaBlackouts.cs" />
     <Compile Include="EventHandlers\TotallySecretUpdate.cs" />

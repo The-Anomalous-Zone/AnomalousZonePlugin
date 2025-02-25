@@ -75,7 +75,6 @@ namespace AnomalousZonePlugin
         private ImprovedCassie iCassie;
         private Radiation radiation;
         private Vaporize vaporize;
-        private StupidStuff stupid;
         private CoroutineHandle coroutineHandle;
         private TotallySecretUpdate secretUpdate;
         private MoreEscapes escape;
@@ -104,7 +103,6 @@ namespace AnomalousZonePlugin
             iCassie = new ImprovedCassie(this);
             radiation = new Radiation(this);
             vaporize = new Vaporize(this);
-            stupid = new StupidStuff(this);
             secretUpdate = new TotallySecretUpdate(this);
             escape = new MoreEscapes(this);
             redirect = new redirect(this);        
@@ -246,7 +244,6 @@ namespace AnomalousZonePlugin
             Candy = null;
             Nerf = null;
             vaporize = null;
-            stupid = null;
             secretUpdate = null;    
             escape = null;
             redirect = null;
