@@ -16,6 +16,6 @@ namespace AnomalousZonePlugin.Classes.FunnyPills
         // Also I nuked 99.9999999999999999999999999999999999999999999999999% of the code
         // Why
         // ¯\_(ツ)_/¯
-        SoundHandler.PlayAudio
+        //SoundHandler.PlayAudio
     }
 }
