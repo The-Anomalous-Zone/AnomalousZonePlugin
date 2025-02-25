@@ -25,6 +25,7 @@ namespace AnomalousZonePlugin.Classes.FunnyPills
             // Let's consider the chances of dying restarting everything
             // It should raise the average number of required pills to 7.32 billion
             // The chance now is 9.09% with dying factored in
+            // This is actually wrong since health is a float not int
             player.MaxHealth += 20;
             player.Heal(player.MaxHealth);
             player.ShowHint($"<color=#0d98ba>Your maximum HP has increased to {player.MaxHealth}!</color>");
