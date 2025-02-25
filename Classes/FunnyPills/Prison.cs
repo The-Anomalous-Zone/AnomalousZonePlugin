@@ -19,6 +19,7 @@ namespace AnomalousZonePlugin.Classes.FunnyPills
             // Turns out really only one of the towers is good at holding players
             // Also it's the admin tower
             // Do I want to use unity and MER to jail a player
+            // I was going to but forgot to
             Vector3 position = player.Position;
             float time = UnityEngine.Random.Range(Plugin.Instance.Config.JailMinTime, Plugin.Instance.Config.JailMaxTime);
             //switch (UnityEngine.Random.Range(0, 5))
