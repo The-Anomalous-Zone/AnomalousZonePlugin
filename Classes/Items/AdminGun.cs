@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.ComponentModel;
 using AnomalousZonePlugin.Classes.FunnyPills;
+using CameraShaking;
 using Exiled.API.Enums;
 using Exiled.API.Features.Attributes;
 using Exiled.API.Features.Items;
@@ -14,7 +15,7 @@ using UnityEngine;
 
 namespace AnomalousZonePlugin.Classes.Items
 {
-    [CustomItem(ItemType.GunRevolver)]
+    [CustomItem(ItemType.GunCom45)]
     public class AdminGun : CustomWeapon
     {
         // I can't make an admin gun
@@ -43,9 +44,14 @@ namespace AnomalousZonePlugin.Classes.Items
                 {
                     ev.IsAllowed = false;
                     Bang.bang(ev.Player, ItemType.GrenadeHE, 0.5f);
-                    ev.Player.Kill("Not allowed to use the admin gun");
+                    ev.Player.Vaporize(ev.Player, $"{ev.Player.DisplayNickname} thought they could use the admin gun");
                     return;
                 }
+                // Give the gun infinite ammo
+                firearm.MaxAmmo = byte.MaxValue;
+                firearm.Ammo = byte.MaxValue; 
+                // Give the gun no recoil
+                firearm.Recoil = new RecoilSettings(0, 0, 0, 0, 0); 
             }
         }
     }

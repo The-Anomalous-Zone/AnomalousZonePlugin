@@ -29,8 +29,16 @@ namespace AnomalousZonePlugin.EventHandlers
         //Just ignore the amount of times I tried to do spinning that didn't work
         // I should have just looked online
         // an AI probably could have done it
-        public int spinAmount = 0;
-        public bool spin = false;
+        public void OnUsingItem(UsingItemEventArgs ev)
+        {
+            if (UnityEngine.Random.value < Plugin.Instance.Config.deniedPillChance)
+            {
+                ev.IsAllowed = false;
+                ev.Player.ShowHint($"<color=0d98ba>{Plugin.Instance.Config.deniedPillMessages.Random()}</color>");
+                return;
+            }
+            ev.IsAllowed = true;
+        }
         public void OnUsedItem(UsedItemEventArgs ev)
         {
             if (ev.Item.Type == ItemType.SCP500 && DateTime.Now.Date == Plugin.Instance.date)
@@ -40,6 +48,10 @@ namespace AnomalousZonePlugin.EventHandlers
             }
             if (ev.Item.Type == ItemType.Medkit && UnityEngine.Random.value < .3 && DateTime.Now.Date == Plugin.Instance.date)
             {
+                // This should be in TotallySecretUpdate.cs
+                // Not FunnyPills.cs
+                // This is not related to funny pills in anyway
+                // Also just terrorize the new players a few more times
                 Bang.bang(ev.Player, ItemType.GrenadeHE, 0.5f);
                 ev.Player.Kill("Had a grenade stuffed in their medkit");
                 return;
@@ -47,7 +59,9 @@ namespace AnomalousZonePlugin.EventHandlers
 
             if (ev.Item.Type != ItemType.Painkillers)
                 return;
-            int something = UnityEngine.Random.Range(0, 27);
+
+            // Very good variable
+            int something = UnityEngine.Random.Range(0, 28);
             Log.Debug($"Player {ev.Player.Nickname} took pills got case {something}");
             switch (something)
             { 
@@ -293,39 +307,36 @@ namespace AnomalousZonePlugin.EventHandlers
                     }
                 case 24:
                     {
-                        // fix this
-                        //Sping.spin(ev.Player);
-                        ev.Player.ShowHint($"<color=#0d98ba>Ha ha, go bang!");
-                        Bang.bang(ev.Player, ItemType.GrenadeHE, 0);
+                        Sping.spin(ev.Player);
                         break;
                     }
                 case 25:
-                    {
-                        //fix this                       
-                        //DeadChat.Talk(ev.Player);
-                        ev.Player.ShowHint($"<color=#0d98ba>Ha ha, go bang!");
-                        Bang.bang(ev.Player, ItemType.GrenadeHE, 0);
-                        break;
+                    {                   
+                       DeadChat.Talk(ev.Player);
+                       break;
                     }
                 case 26:
                     {
-                        //fix this
-                      //  if (Player.List.Where(player => player.IsScp).Count() > 0)
-                     //   {
-                      //      HearSCPs.Talk(ev.Player);
-                      //  }                        
-                       // else
-                       // {
+                        if (Player.List.Where(player => player.IsScp).Count() > 0)
+                        {
+                            HearSCPs.hearSCPs(ev.Player);
+                        }
+                        else
+                        {
                             ev.Player.ShowHint("<color=#0d98ba>Haha, go bang!");
                             Bang.bang(ev.Player, ItemType.GrenadeHE, 0);
-                        //}
-                        // There's a lot of fix this
-                        // I forgor
+                        }
+
                         break;
                     }
                 case 27:
                     {
-                        
+                        InvertedControls.Invert(ev.Player);
+                        break;
+                    }
+                case 28:
+                    {
+                        PryGate.pry(ev.Player);
                         break;
                     }
 

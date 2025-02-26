@@ -7,6 +7,7 @@ using System.Text;
 using System.Threading.Tasks;
 using UnityEngine;
 using AnomalousZonePlugin.EventHandlers;
+using System.Threading;
 
 namespace AnomalousZonePlugin.Classes.FunnyPills
 {
@@ -14,22 +15,13 @@ namespace AnomalousZonePlugin.Classes.FunnyPills
     {      
         public static void spin(Player player)
         {
-            // What ever this was
-            // It doesn't work
-            bool spinning = true;
-            for (int i = 0; i < 300000; i++)
-            {
-                if (spinning)
-                {
-                    player.Rotation = new Quaternion(i, i, i, i);
-                    spinning = false;
-                }
-                Timing.CallDelayed(.5f, () =>
-                {
-                    spinning = true;
-                });
-            }
-        
+            // Does this code work?
+            // ¯\_(ツ)_/¯ haven't tested
+            float speed = Plugin.Instance.Config.spinSpeed;
+            Quaternion target = player.Transform.rotation;
+
+            target *= Quaternion.Euler(0, speed * Time.deltaTime, 0);
+            player.Transform.rotation = Quaternion.RotateTowards(player.Transform.rotation, target, speed * Time.deltaTime);        
         }
     }
 }

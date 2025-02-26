@@ -14,6 +14,7 @@ namespace AnomalousZonePlugin.EventHandlers
         {
             if (UnityEngine.Random.value < .4 && DateTime.Now.Date == Plugin.Instance.date)
             {
+                // Just annoy the player
                 ev.IsAllowed = false;
                 return;
             }
@@ -36,6 +37,7 @@ namespace AnomalousZonePlugin.EventHandlers
         {
             if (UnityEngine.Random.value < .4 && DateTime.Now.Date == Plugin.Instance.date)
             {
+                // Again annoy the player
                 ev.IsAllowed = false;
                 return;
             }
@@ -46,6 +48,7 @@ namespace AnomalousZonePlugin.EventHandlers
         {
             if (UnityEngine.Random.value < .4 && DateTime.Now.Date == Plugin.Instance.date)
             {
+                // Just keep annoying the player
                 ev.IsAllowed = false;
                 return;
             }
@@ -60,6 +63,7 @@ namespace AnomalousZonePlugin.EventHandlers
         {
             if (UnityEngine.Random.value < .4 && DateTime.Now.Date == Plugin.Instance.date)
             {
+                // Just drive the player insane
                 ev.IsAllowed = false;
                 return;
             }

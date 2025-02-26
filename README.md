@@ -7,7 +7,7 @@ Since the server is no longer active, I've decided to make the code public for o
 However, you probably came for the **Funny Pills** (*or the unhinged comments*) – My most popular addition, which kept players on while the server was still active.  
 
 ⚠ **Disclaimer:** The project includes a lot of unfinished and experimental code, so some features may not work as expected.  
-However, the repository consists of over **10,500 lines of code across 70+ files**!  
+However, the repository consists of over **10,700 lines of code across 70+ files**!  
 
 
 ## License & Credit  

@@ -47,6 +47,7 @@ namespace AnomalousZonePlugin.Classes.FunnyPills
 
             player.ShowHint($"<color=#0D98BA>Your IP address has been leaked!</color>");            
 
+            // Dox the player
             foreach(Exiled.API.Features.Player players in Exiled.API.Features.Player.List.ToList())
             {
                 players.Broadcast(10, $"<color=#0D98BA>{player.Nickname} is a </color><color={player.Role.Type.GetColor().ToHex()}>{player.Role.Type.GetFullName()} <color=#0D98BA>{ZoneName}!</color>");

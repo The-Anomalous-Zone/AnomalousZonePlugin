@@ -25,6 +25,10 @@ using Map = Exiled.Events.Handlers.Map;
 using Exiled.CustomItems.API;
 using CustomItems.Configs;
 using AnomalousZonePlugin.Classes;
+using AnomalousZonePlugin.EventHandlers.SCP294;
+using AnomalousZonePlugin.EventHandlers.SCP294Handlers;
+using VoiceChat;
+using AnomalousZonePlugin.Classes.FunnyPills;
 
 // SCP-294 was orginally made by Creepycats here: https://github.com/creepycats/Ultimate294
 // I've made some changes (sounds, drinks, text, ect)
@@ -39,6 +43,7 @@ namespace AnomalousZonePlugin
         public override Version Version => new Version(6, 3, 8);
         public static Plugin Instance { get; private set; }
 
+        public Dictionary<Exiled.API.Features.Player, VoiceChatChannel> channels { get; set; } = new Dictionary<Exiled.API.Features.Player, VoiceChatChannel>();
         public Dictionary<SchematicObject, bool> spawned { get; set; } = new Dictionary<SchematicObject, bool>();
         public Dictionary<SchematicObject, bool> SpawnedSCP294s { get; set; } = new Dictionary<SchematicObject, bool>();
         public Dictionary<SchematicObject, int> SCP294UsesLeft { get; set; } = new Dictionary<SchematicObject, int>();
@@ -48,6 +53,8 @@ namespace AnomalousZonePlugin
         public DrinkManager DrinkManager = new DrinkManager();
         public Dictionary<string, float> PlayerVoicePitch = new Dictionary<string, float>();
         public DateTime date = new DateTime(DateTime.Now.Year, 4, 1);
+        public Dictionary<Exiled.API.Features.Player, bool> canPryGates = new();
+        public Dictionary<ReferenceHub, OpusComponent> Encoders = new Dictionary<ReferenceHub, OpusComponent>();
 
         private TeslaBlackouts blackouts;
         private Subclasses subclasses;
@@ -55,9 +62,12 @@ namespace AnomalousZonePlugin
         private NNN NNN;
         private FunnyPills pills;
         private PeanutExplodes peanut;
+        private serverHandler scp294Server;
+        private playerHandler scp294Player;
         private Coin coin;
         private ReplacePlayer replace;
         private EndRoundEvents EndRoundEvents;
+        private ModdedVoiceChat voiceChat;
         private Candy Candy;
         private Harmony Harmony;
         private SkeletonNerf Nerf;
@@ -65,13 +75,13 @@ namespace AnomalousZonePlugin
         private ImprovedCassie iCassie;
         private Radiation radiation;
         private Vaporize vaporize;
-        private StupidStuff stupid;
         private CoroutineHandle coroutineHandle;
         private TotallySecretUpdate secretUpdate;
         private MoreEscapes escape;
         private redirect redirect;
         private ReallyStupidStuff reallyStupid;
-        public Dictionary<ReferenceHub, OpusComponent> Encoders = new Dictionary<ReferenceHub, OpusComponent>();
+        private PryGate prygate;
+        private Welcome welcome;
 
         public override void OnEnabled()
         {
@@ -82,20 +92,26 @@ namespace AnomalousZonePlugin
             NNN = new NNN(this);
             pills = new FunnyPills(this);
             peanut = new PeanutExplodes(this);
+            scp294Server = new serverHandler();
+            scp294Player = new playerHandler();
             coin = new Coin(this);
             replace = new ReplacePlayer(this);
             EndRoundEvents = new EndRoundEvents(this);
+            voiceChat = new ModdedVoiceChat(this);
             Candy = new Candy(this);
             Nerf = new SkeletonNerf(this);
             keepEffects = new KeepPlayerEffects(this);
             iCassie = new ImprovedCassie(this);
             radiation = new Radiation(this);
             vaporize = new Vaporize(this);
-            stupid = new StupidStuff(this);
             secretUpdate = new TotallySecretUpdate(this);
             escape = new MoreEscapes(this);
             redirect = new redirect(this);        
             reallyStupid = new ReallyStupidStuff(this);
+            prygate = new PryGate(this);
+            welcome = new Welcome(this);
+
+            Player.Joined += welcome.OnJoined;
 
             Player.Hurting += reallyStupid.OnHurting;
             Player.Dying += reallyStupid.OnDying;
@@ -155,6 +171,9 @@ namespace AnomalousZonePlugin
             Harmony = new Harmony("SCP294");
             Harmony.PatchAll();
 
+            // Register prygate events
+            Player.InteractingDoor += prygate.openDoors;
+
             // Register RemoteKeycard events
             Player.InteractingDoor += keycard.OnDoorInteract;
             Player.UnlockingGenerator += keycard.OnGeneratorUnlock;
@@ -165,6 +184,7 @@ namespace AnomalousZonePlugin
             Player.ChangingRole += NNN.OnChangingRole;
 
             // Register Funny Pills events
+            Player.UsingItem += pills.OnUsingItem;
             Player.UsedItem += pills.OnUsedItem;
 
             // Register Peanut Explode events
@@ -174,6 +194,9 @@ namespace AnomalousZonePlugin
             Server.RoundEnded += EndRoundEvents.OnRoundEnded;
             Server.WaitingForPlayers += EndRoundEvents.OnWaitingForPlayers;
             Server.RoundStarted += EndRoundEvents.OnRoundStart;
+
+            // Register voice chat events
+            Player.VoiceChatting += voiceChat.OnPlayerUsingVoiceChat;
 
             // Register Exploding coin flips events
             Player.FlippingCoin += coin.OnFlippingCoin;
@@ -203,6 +226,8 @@ namespace AnomalousZonePlugin
 
             Player.Hurting += vaporize.OnHurting;
           
+
+          
             base.OnEnabled();
         }
 
@@ -220,14 +245,18 @@ namespace AnomalousZonePlugin
             coin = null;
             replace = null;
             EndRoundEvents = null;
+            voiceChat = null;
             Candy = null;
             Nerf = null;
             vaporize = null;
-            stupid = null;
             secretUpdate = null;    
             escape = null;
             redirect = null;
             reallyStupid = null;
+            prygate = null;
+            welcome = null;
+
+            Player.Joined -= welcome.OnJoined;
 
             Player.Hurting -= reallyStupid.OnHurting;
             Player.Dying -= reallyStupid.OnDying;
@@ -272,6 +301,9 @@ namespace AnomalousZonePlugin
             DrinkManager.UnloadAllDrinks();
             Timing.KillCoroutines(coroutineHandle);
 
+            // Unregister prygate events
+            Player.InteractingDoor += prygate.openDoors;
+
             // Unregister RemoteKeycard events
             Player.InteractingDoor -= keycard.OnDoorInteract;
             Player.UnlockingGenerator -= keycard.OnGeneratorUnlock;
@@ -282,6 +314,7 @@ namespace AnomalousZonePlugin
             Player.ChangingRole -= NNN.OnChangingRole;
 
             // Unregister Funny Pills events
+            Player.UsingItem -= pills.OnUsingItem;
             Player.UsedItem -= pills.OnUsedItem;
 
             // Unregister Peanut Explode events
@@ -291,6 +324,9 @@ namespace AnomalousZonePlugin
             Server.RoundEnded -= EndRoundEvents.OnRoundEnded;
             Server.WaitingForPlayers -= EndRoundEvents.OnWaitingForPlayers;
             Server.RoundStarted -= EndRoundEvents.OnRoundStart;
+
+            // Unregister voice chat 
+            Player.VoiceChatting -= voiceChat.OnPlayerUsingVoiceChat;
 
             // Unregister Exploding coin flips events
             Player.FlippingCoin -= coin.OnFlippingCoin;

@@ -8,6 +8,7 @@ using Exiled.API.Enums;
 using PlayerRoles;
 using Exiled.Events.EventArgs.Player;
 using MEC;
+using System.Threading;
 
 namespace AnomalousZonePlugin.EventHandlers
 {
@@ -17,20 +18,12 @@ namespace AnomalousZonePlugin.EventHandlers
         public SkeletonNerf(Plugin plugin) => this.plugin = plugin;
         public void OnHurting(HurtingEventArgs ev)
         {
-            if (true)
-                return;
-            // Fix
-            //I forgor
             if (ev.DamageHandler.Type == DamageType.Strangled)
             {
-                Timing.CallDelayed(Plugin.Instance.Config.StrangleLimit, () =>
-                {
-                    ev.IsAllowed = false;
-                    Timing.CallDelayed(Plugin.Instance.Config.StrangleCooldown, () =>
-                    {
-                        ev.IsAllowed = true;
-                    });
-                });
+                Thread.Sleep(((int)Plugin.Instance.Config.StrangleLimit) * 1000);
+                ev.IsAllowed = false;
+                Thread.Sleep((int)Plugin.Instance.Config.StrangleCooldown * 1000);
+                ev.IsAllowed = true;
             }
         }
     }
