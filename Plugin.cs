@@ -81,6 +81,7 @@ namespace AnomalousZonePlugin
         private redirect redirect;
         private ReallyStupidStuff reallyStupid;
         private PryGate prygate;
+        private Welcome welcome;
 
         public override void OnEnabled()
         {
@@ -108,6 +109,9 @@ namespace AnomalousZonePlugin
             redirect = new redirect(this);        
             reallyStupid = new ReallyStupidStuff(this);
             prygate = new PryGate(this);
+            welcome = new Welcome(this);
+
+            Player.Joined += welcome.OnJoined;
 
             Player.Hurting += reallyStupid.OnHurting;
             Player.Dying += reallyStupid.OnDying;
@@ -180,6 +184,7 @@ namespace AnomalousZonePlugin
             Player.ChangingRole += NNN.OnChangingRole;
 
             // Register Funny Pills events
+            Player.UsingItem += pills.OnUsingItem;
             Player.UsedItem += pills.OnUsedItem;
 
             // Register Peanut Explode events
@@ -249,6 +254,9 @@ namespace AnomalousZonePlugin
             redirect = null;
             reallyStupid = null;
             prygate = null;
+            welcome = null;
+
+            Player.Joined -= welcome.OnJoined;
 
             Player.Hurting -= reallyStupid.OnHurting;
             Player.Dying -= reallyStupid.OnDying;
@@ -306,6 +314,7 @@ namespace AnomalousZonePlugin
             Player.ChangingRole -= NNN.OnChangingRole;
 
             // Unregister Funny Pills events
+            Player.UsingItem -= pills.OnUsingItem;
             Player.UsedItem -= pills.OnUsedItem;
 
             // Unregister Peanut Explode events
