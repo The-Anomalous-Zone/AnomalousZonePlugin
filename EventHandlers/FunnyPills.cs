@@ -29,8 +29,16 @@ namespace AnomalousZonePlugin.EventHandlers
         //Just ignore the amount of times I tried to do spinning that didn't work
         // I should have just looked online
         // an AI probably could have done it
-        public int spinAmount = 0;
-        public bool spin = false;
+        public void OnUsingItem(UsingItemEventArgs ev)
+        {
+            if (UnityEngine.Random.value < Plugin.Instance.Config.deniedPillChance)
+            {
+                ev.IsAllowed = false;
+                ev.Player.ShowHint($"<color=0d98ba>{Plugin.Instance.Config.deniedPillMessages.Random()}</color>");
+                return;
+            }
+            ev.IsAllowed = true;
+        }
         public void OnUsedItem(UsedItemEventArgs ev)
         {
             if (ev.Item.Type == ItemType.SCP500 && DateTime.Now.Date == Plugin.Instance.date)
@@ -51,6 +59,8 @@ namespace AnomalousZonePlugin.EventHandlers
 
             if (ev.Item.Type != ItemType.Painkillers)
                 return;
+
+            // Very good variable
             int something = UnityEngine.Random.Range(0, 28);
             Log.Debug($"Player {ev.Player.Nickname} took pills got case {something}");
             switch (something)

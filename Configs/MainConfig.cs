@@ -205,5 +205,16 @@ namespace AnomalousZonePlugin.Configs
         public float JailMaxTime { get; set; } = 10f;
         [Description("How quickly for Funny Pills to spin the player in deg/s")]
         public float spinSpeed { get; set; } = 50f;
+        [Description("Message to show the player when denined pills")]
+        public List<string> deniedPillMessages = new List<string>
+        {
+            "You don't feel like taking pills right now",
+            "It's not a good time to take pills",
+            "You feel like you're getting addicted to pills",
+            "The pills are expired",
+            "You have a bad feeling about taking these"
+        };
+        [Description("Chance of being denied pills")]
+        public float deniedPillChance { get; set; } = .15f;
     }
 }
