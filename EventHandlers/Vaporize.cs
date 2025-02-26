@@ -15,10 +15,11 @@ namespace AnomalousZonePlugin.EventHandlers
         public Vaporize(Plugin plugin) => this.plugin = plugin;
         public void OnHurting(HurtingEventArgs ev)
         {
-            // It took so long to prevent these 2 lines of code from crashing the server
+            // It took so long to prevent these lines of code from crashing the server
             // Why
             // ¯\_(ツ)_/¯
-            if (ev.DamageHandler.Type == DamageType.MicroHid && ev.Player.Role.Team != Team.SCPs)
+            if (ev.DamageHandler.Type == DamageType.MicroHid 
+                && ev.Player.Role.Team != Team.SCPs)
             {
                 ev.Player.Vaporize();
             }

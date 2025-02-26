@@ -2510,15 +2510,15 @@ namespace AnomalousZonePlugin.Configs.SCP294
                 }
             }, // SCP-2521 ../...../../.
             new CustomDrink()
-            {
-                // Please don't try suicide
-                // Like the Queen song Don't Try Suicide
+            {              
                 DrinkNames = new List<string>(){
                     "Almost Instant Death Juice",
                     "Almost Death Juice",
                     "Almost Instant Dead Juice",
                     "Almost Dead Juice",
-                    "Kill-Me-Soon",                    
+                    "Kill-Me-Soon", 
+                    // Please don't try suicide
+                // Like the Queen song Don't Try Suicide
                     "Kill Me Soon",
                     "KillMeSoon"
                 },
