@@ -55,6 +55,7 @@ namespace AnomalousZonePlugin
         public DateTime date = new DateTime(DateTime.Now.Year, 4, 1);
         public Dictionary<Exiled.API.Features.Player, bool> canPryGates = new();
         public Dictionary<ReferenceHub, OpusComponent> Encoders = new Dictionary<ReferenceHub, OpusComponent>();
+        public int id { get; set; } = 0;
 
         private TeslaBlackouts blackouts;
         private Subclasses subclasses;

@@ -1,5 +1,6 @@
 ﻿using AnomalousZonePlugin.Classes;
 using AnomalousZonePlugin.Classes.FunnyPills;
+using AudioPlayer.API.Container;
 using Exiled.API.Enums;
 using Exiled.API.Extensions;
 using Exiled.API.Features;
@@ -8,10 +9,12 @@ using Exiled.API.Features.Pickups;
 using Exiled.Events.EventArgs.Player;
 using InventorySystem;
 using MEC;
+using SCPSLAudioApi.AudioCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 using UnityEngine;
 using VoiceChat;
@@ -174,14 +177,16 @@ namespace AnomalousZonePlugin.EventHandlers
                     {
                         if (Player.List.Where(player => player.IsScp).ToList().Count() > 0)
                         {
-                            // The sound api broke AGAIN
-                            //Sound.PlaySound("bossStart.ogg", 50, false, "Boss Music", ev.Player.Position, 5f);
+                            AudioPlayerBot audioPlayer = new(Plugin.Instance.id++, "Boss Music", new AudioPlayerBase(), ev.Player);
+                            Thread.Sleep(150);
+                            audioPlayer.PlayAudioFromFile("/scpslserver/Exiled/config/funnypills/bossStart.ogg", false, 100, VoiceChatChannel.Proximity);                            
                             Timing.CallDelayed(2f, () =>
                             {
                                 Teleport.SCPTP(ev.Player);
-                                //Sound.PlaySound("bossEnd.ogg", 50, false, "Boss Music", ev.Player.Position, 5f);
+                                audioPlayer.PlayAudioFromFile("/scpslserver/Exiled/config/funnypills/bossEnd.ogg", false, 100, VoiceChatChannel.Proximity);
                                 while (ev.Player.IsAlive) { }
-                                Sound.Stop();
+                                audioPlayer.StopAudio();
+                                audioPlayer.Destroy();
                             });
                         }
                         else
@@ -337,6 +342,11 @@ namespace AnomalousZonePlugin.EventHandlers
                 case 28:
                     {
                         PryGate.pry(ev.Player);
+                        break;
+                    }
+                case 29:
+                    {
+                        Rick.play(ev.Player);
                         break;
                     }
 
