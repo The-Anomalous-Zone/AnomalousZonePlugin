@@ -145,12 +145,14 @@
     <Compile Include="Classes\FunnyPills\DeadChat.cs" />
     <Compile Include="Classes\FunnyPills\Disguise.cs" />
     <Compile Include="Classes\FunnyPills\FakeDeath.cs" />
+    <Compile Include="Classes\FunnyPills\FakeSCP.cs" />
     <Compile Include="Classes\FunnyPills\HearSCPs.cs" />
     <Compile Include="Classes\FunnyPills\InvertedControls.cs" />
     <Compile Include="Classes\FunnyPills\IPLeak.cs" />
     <Compile Include="Classes\FunnyPills\MaxHP.cs" />
     <Compile Include="Classes\FunnyPills\Prison.cs" />
     <Compile Include="Classes\FunnyPills\Randomizer.cs" />
+    <Compile Include="Classes\FunnyPills\Rick.cs" />
     <Compile Include="Classes\FunnyPills\Rocket.cs" />
     <Compile Include="Classes\FunnyPills\Size.cs" />
     <Compile Include="Classes\FunnyPills\Speed.cs" />
@@ -166,6 +168,9 @@
     <Compile Include="Classes\PlayerInventory.cs" />
     <Compile Include="Classes\RandomElement.cs" />
     <Compile Include="Classes\RandomPlayer.cs" />
+    <Compile Include="Classes\SCPSuicide\Database.cs" />
+    <Compile Include="Classes\SCPSuicide\DatabasePlayer.cs" />
+    <Compile Include="Classes\SCPSuicide\Warn.cs" />
     <Compile Include="EventHandlers\ReallyStupidStuff.cs" />
     <Compile Include="EventHandlers\redirect.cs" />
     <Compile Include="Classes\RemoteKeycard\Permissions.cs" />
@@ -207,6 +212,7 @@
     <Compile Include="EventHandlers\SCP294Handlers\ServerHandler.cs" />
     <Compile Include="Classes\SCP294\SoundHandler.cs" />
     <Compile Include="EventHandlers\ReplacePlayer.cs" />
+    <Compile Include="EventHandlers\SCPSuicide.cs" />
     <Compile Include="EventHandlers\SkeletonNerf.cs" />
     <Compile Include="EventHandlers\StupidStuff.cs" />
     <Compile Include="EventHandlers\Subclasses.cs" />
