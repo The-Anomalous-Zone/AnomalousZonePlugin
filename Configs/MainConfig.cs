@@ -216,5 +216,10 @@ namespace AnomalousZonePlugin.Configs
         };
         [Description("Chance of being denied pills")]
         public float deniedPillChance { get; set; } = .15f;
+        [Description("Number of pills to spawn for sacrifice")]
+        public int sacificeAmount { get; set; } = 50;
+        [Description("Radius of circle for sacrifice")]
+        public float sacrificeRadius { get; set; } = 3.5f;
+
     }
 }

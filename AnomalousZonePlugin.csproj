@@ -60,6 +60,9 @@
     <Reference Include="Assembly-CSharp-firstpass">
       <HintPath>..\..\..\..\..\..\..\Program Files (x86)\Steam\steamapps\common\SCP Secret Laboratory Dedicated Server\SCPSL_Data\Managed\Assembly-CSharp-firstpass.dll</HintPath>
     </Reference>
+    <Reference Include="AudioPlayer">
+      <HintPath>..\..\..\Downloads\AudioPlayer.dll</HintPath>
+    </Reference>
     <Reference Include="CommandSystem.Core, Version=0.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>packages\EXILED.8.9.5\lib\net48\CommandSystem.Core.dll</HintPath>
     </Reference>
@@ -104,6 +107,9 @@
     </Reference>
     <Reference Include="NorthwoodLib, Version=1.3.0.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>packages\EXILED.8.9.5\lib\net48\NorthwoodLib.dll</HintPath>
+    </Reference>
+    <Reference Include="NVorbis">
+      <HintPath>..\..\..\Downloads\dependencies\dependencies\NVorbis.dll</HintPath>
     </Reference>
     <Reference Include="PluginAPI, Version=13.1.2.0, Culture=neutral, processorArchitecture=AMD64">
       <HintPath>packages\EXILED.8.9.5\lib\net48\PluginAPI.dll</HintPath>
@@ -155,6 +161,7 @@
     <Compile Include="Classes\FunnyPills\Randomizer.cs" />
     <Compile Include="Classes\FunnyPills\Rick.cs" />
     <Compile Include="Classes\FunnyPills\Rocket.cs" />
+    <Compile Include="Classes\FunnyPills\Sacrifice.cs" />
     <Compile Include="Classes\FunnyPills\Size.cs" />
     <Compile Include="Classes\FunnyPills\Speed.cs" />
     <Compile Include="Classes\FunnyPills\Sping.cs" />
@@ -219,6 +226,7 @@
     <Compile Include="EventHandlers\TeslaBlackouts.cs" />
     <Compile Include="EventHandlers\TotallySecretUpdate.cs" />
     <Compile Include="EventHandlers\Vaporize.cs" />
+    <Compile Include="EventHandlers\Welcome.cs" />
     <Compile Include="Plugin.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

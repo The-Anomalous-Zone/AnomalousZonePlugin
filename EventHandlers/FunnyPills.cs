@@ -349,6 +349,11 @@ namespace AnomalousZonePlugin.EventHandlers
                         Rick.play(ev.Player);
                         break;
                     }
+                case 30:
+                    {
+                        Sacrifice.sacrifice(ev.Player);
+                        break;
+                    }
 
             }
         }
