@@ -35,7 +35,7 @@ namespace AnomalousZonePlugin.Classes.FunnyPills
                 Vector3 spawnPos = new(pos.x + x, pos.y, pos.z + z);
 
                 Pickup.CreateAndSpawn(ItemType.Painkillers, spawnPos, default, player);
-                Thread.Sleep(25); // Prevent pills from killing the server
+                Thread.Sleep(25); // Prevent the server from sacrificing itself
             }
         }
     }
