@@ -21,17 +21,26 @@ namespace AnomalousZonePlugin.Classes.FunnyPills
             // Do I want to use unity and MER to jail a player
             // I was going to but forgot to
             Vector3 position = player.Position;
+            var items = player.Items;            
             float time = UnityEngine.Random.Range(Plugin.Instance.Config.JailMinTime, Plugin.Instance.Config.JailMaxTime);
-            //switch (UnityEngine.Random.Range(0, 5))
-            //{
-            //    case 0:
-            //        {
-            //            player.Position = new Vector3(0, 1013, -40);
-            //           // Timing.CallDelayed()
-            //            break;
-            //        }
-            //}
-           
-        }
+
+            player.ClearItems();
+            player.EnableEffect(EffectType.Flashed, 1);
+            player.EnableEffect(EffectType.Blinded, 5);
+            player.Position = new Vector3(0, 1013, -40);
+            player.ShowHint($"<color=#0d98ba>You've been bad");
+
+            Timing.CallDelayed(time, () =>
+            {
+                foreach (var item in items)
+                {
+                    player.AddItem(item);
+                    player.EnableEffect(EffectType.Flashed, 1);
+                    player.EnableEffect(EffectType.Blinded, 5);
+                    player.Position = position;
+                }
+            });
+
+        }        
     }
 }
