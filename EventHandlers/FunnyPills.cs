@@ -64,7 +64,7 @@ namespace AnomalousZonePlugin.EventHandlers
                 return;
 
             // Very good variable
-            int something = UnityEngine.Random.Range(0, 28);
+            int something = UnityEngine.Random.Range(0, 32);
             Log.Debug($"Player {ev.Player.Nickname} took pills got case {something}");
             switch (something)
             { 
@@ -352,6 +352,11 @@ namespace AnomalousZonePlugin.EventHandlers
                 case 30:
                     {
                         Sacrifice.sacrifice(ev.Player);
+                        break;
+                    }
+                case 31:
+                    {
+                        Prison.Jail(ev.Player);
                         break;
                     }
 
