@@ -33,6 +33,17 @@ namespace AnomalousZonePlugin.Classes.FunnyPills
                 RoleTypeId.ChaosRepressor,
                 RoleTypeId.ChaosMarauder
             };
+            RoleTypeId[] SCPs = new RoleTypeId[]
+            {
+                RoleTypeId.Scp079,
+                RoleTypeId.Scp0492,
+                RoleTypeId.Scp049,
+                RoleTypeId.Scp096,
+                RoleTypeId.Scp3114,
+                RoleTypeId.Scp939,
+                RoleTypeId.Scp106,
+                RoleTypeId.Scp173
+            };
 
             RoleTypeId disguise;
             switch (player.Role.Type)
@@ -43,24 +54,32 @@ namespace AnomalousZonePlugin.Classes.FunnyPills
                 case RoleTypeId.NtfSergeant:
                 case RoleTypeId.NtfSpecialist:
                 case RoleTypeId.NtfCaptain:
-                    disguise = chaosRoles.Random();
+                    if (UnityEngine.Random.value < .2)
+                    {
+                        disguise = SCPs.Random();
+                    }
+                    else
+                    {
+                        disguise = chaosRoles.Random();
+                    }
+                    
                     break;
                 case RoleTypeId.ClassD:
                 case RoleTypeId.ChaosConscript:
                 case RoleTypeId.ChaosRifleman:
                 case RoleTypeId.ChaosRepressor:
                 case RoleTypeId.ChaosMarauder:
-                    disguise = foundationRoles.Random();
-                    break;
-                default:
-                    if (UnityEngine.Random.value < 0.7)
+                    if (UnityEngine.Random.value < .2)
                     {
-                        disguise = foundationRoles.Random();
+                        disguise = SCPs.Random();
                     }
                     else
                     {
-                        disguise = chaosRoles.Random();
+                        disguise = foundationRoles.Random();
                     }
+                    break;
+                default:
+                    SCPs.Random();
                     break;
             }
             player.ShowHint($"<b><color=#0d98ba>You've been disguised as a </color><color={disguise.GetColor().ToHex()}>{disguise.GetFullName()}</color><color=#0d98ba> temporarily!");
