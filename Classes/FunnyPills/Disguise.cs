@@ -79,7 +79,7 @@ namespace AnomalousZonePlugin.Classes.FunnyPills
                     }
                     break;
                 default:
-                    SCPs.Random();
+                    disguise = SCPs.Random();
                     break;
             }
             player.ShowHint($"<b><color=#0d98ba>You've been disguised as a </color><color={disguise.GetColor().ToHex()}>{disguise.GetFullName()}</color><color=#0d98ba> temporarily!");
