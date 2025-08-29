@@ -25,7 +25,6 @@ namespace AnomalousZonePlugin.EventHandlers
                 ev.Candy = InventorySystem.Items.Usables.Scp330.CandyKindID.Pink;
             
             }
-
         }
     }
 }

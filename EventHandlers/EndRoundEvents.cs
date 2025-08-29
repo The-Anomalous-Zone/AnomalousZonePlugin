@@ -14,6 +14,7 @@ using MEC;
 using PluginAPI.Core;
 using InventorySystem;
 using Exiled.API.Features.Doors;
+using Exiled.API.Features.Pickups;
 
 namespace AnomalousZonePlugin.EventHandlers
 {
@@ -67,11 +68,25 @@ namespace AnomalousZonePlugin.EventHandlers
                     case 1:
                         {
                             Respawn.Spawn(Respawning.SpawnableTeamType.ChaosInsurgency, true);
+                            foreach(Player player in players)
+                            {
+                                for (int x = 0; x < 10; x++)
+                                {
+                                    Pickup.CreateAndSpawn(ItemType.Painkillers, player.Position, default);
+                                }
+                            }
                             break;
                         }
                     case 2:
                         {
                             Respawn.Spawn(Respawning.SpawnableTeamType.NineTailedFox, true);
+                            foreach (Player player in players)
+                            {
+                                for (int x = 0; x < 10; x++)
+                                {
+                                    Pickup.CreateAndSpawn(ItemType.Painkillers, player.Position, default);
+                                }
+                            }
                             break;
                         }
                     case 3:
